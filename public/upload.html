@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Campus Memories</title>
+    <link rel="stylesheet" href="upload.css">
+</head>
+<body>
+
+<div class="upload-page">
+    <h1>Share Your Campus Moments</h1>
+    <p>Upload your favorite memories to contribute to our campus collection.</p>
+
+    <form id="upload-form" enctype="multipart/form-data">
+        <!-- File Upload Section -->
+        <div class="upload-container" onclick="document.getElementById('photo-upload').click();">
+            <input type="file" id="photo-upload" name="photo" style="display:none;" onchange="previewImages();">
+            <p>Click to select photos or drag them here</p>
+        </div>
+        <div id="preview-container" class="preview"></div>
+
+        <!-- Metadata Form -->
+        <div class="metadata-form">
+            <input type="text" id="photo-title" name="title" placeholder="Photo Title" required><br>
+            <textarea id="photo-description" name="description" placeholder="Tell us about this memory..." rows="3"></textarea><br>
+            <select name="category" id="photo-category" required>
+                <option value="">Select Category</option>
+                <option value="Anual_fest_2023">Anual_fest_2k23</option>
+                <option value="Freshers">Freshers</option>
+                <option value="Enterprise Xperia 2.0">Enterprise Xperia 2.0</option>
+            </select><br>
+            <input type="date" id="photo-date" name="photo-date" placeholder="Date of Photo">
+        </div>
+
+        <!-- Upload Button and Progress Bar -->
+        <button type="button" class="upload-button" onclick="uploadPhoto()">Upload Photo</button>
+        <div id="progress-bar-container">
+            <div id="progress-bar"></div>
+        </div>
+        <div id="upload-status" class="status-message"></div>
+    </form>
+</div>
+<script src="/firebaseConfig.js"></script>  
+<script>
+// Preview Images Function
+function previewImages() {
+    const previewContainer = document.getElementById('preview-container');
+    const file = document.getElementById('photo-upload').files[0];
+    previewContainer.innerHTML = ''; // Clear previous previews
+
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = e => {
+            const img = document.createElement('img');
+            img.src = e.target.result;
+            previewContainer.appendChild(img);
+        };
+        reader.readAsDataURL(file);
+    }
+}
+
+// Upload Photo Function
+async function uploadPhoto() {
+    const formData = new FormData();
+    formData.append("category", document.getElementById("photo-category").value);
+    formData.append("title", document.getElementById("photo-title").value);
+    formData.append("description", document.getElementById("photo-description").value);
+    formData.append("date", document.getElementById("photo-date").value);
+    formData.append("photo", document.getElementById("photo-upload").files[0]);
+
+    // Show the progress bar
+    const progressBarContainer = document.getElementById('progress-bar-container');
+    const progressBar = document.getElementById('progress-bar');
+    const uploadStatus = document.getElementById('upload-status');
+    progressBarContainer.style.display = 'block';
+    uploadStatus.innerText = '';
+    
+    // Show progress and send data to backend
+    try {
+        const response = await fetch("/upload", {
+            method: "POST",
+            body: formData
+        });
+
+        if (!response.ok) throw new Error("Upload failed");
+
+        // Update UI on success
+        uploadStatus.innerText = "Photo uploaded successfully!";
+        uploadStatus.style.color = "green";
+        progressBar.style.width = '100%';
+
+        // Redirect to main page after upload
+        setTimeout(() => window.location.href = "homepage.html", 1500);
+    } catch (error) {
+        console.error("Error uploading photo:", error);
+        uploadStatus.innerText = "Failed to upload photo.";
+        uploadStatus.style.color = "red";
+    } finally {
+        progressBarContainer.style.display = 'none';
+    }
+}
+</script>
+
+</body>
+</html>

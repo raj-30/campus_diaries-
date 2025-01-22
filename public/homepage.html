@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playwrite+GB+S:ital,wght@0,100..400;1,100..400&family=Tilt+Prism&display=swap"
+        rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preload" as="image" href="Scan me!.png">
+    <title>Collage Gallery</title>
+</head>
+
+<body>
+    <div id="mySidebar" class="sidebar">
+        <div class="closebtn" onclick="closeNav()">
+            <a id="heroname_sidebar" href="#">Campus Diaries <svg xmlns="http://www.w3.org/2000/svg" height="20px"
+                    viewBox="0 -960 960 960" width="20px" fill="#798645">
+                    <path
+                        d="m145.87-76.78-69.09-69.09L312.91-382H172.78v-98H480v307.22h-98v-140.13L145.87-76.78ZM480-480v-307.22h98v140.13l236.13-236.13 69.09 69.09L647.09-578h140.13v98H480Z" />
+                </svg></a>
+        </div>
+    </div>
+    <div class="container">
+        <nav>
+            <ul>
+                <li><a id="heroname" href="#">Campus <br> Diaries</a></li>
+                
+                    <a href="index.html"><button class="tab-button">Logout</button></a>
+                </li>
+            </ul>
+        </nav>
+        <div class="heading">
+            <h1 id="headtitle">
+                Snap <span id="emoji">📸 </span> <br />& Share memories around Campus
+            </h1>
+        </div>
+
+        <div class="sub_sec">
+            <div class="subtitle">
+                <h1>
+                    Campus Diaries is a creative platform for students to share moments, memories, and campus life through photos. Capture and connect with your campus community in one united gallery 
+                </h1>
+                <!-- <input type="button" value="Scroll to Middle" class="tab-button" onclick="document.getElementById('middle').scrollIntoView();" /> -->
+                <!-- <input type="button" onClick="document.getElementById('middle').scrollIntoView();" /> -->
+                <!-- <button class="tab-button" type="button" onClick="document.getElementById('middle').scrollIntoView();" >Add to favorites</button> -->
+                <a href="upload.html">
+                    <button id="upload-btn"  class="tab-button">Upload photos</button>
+                </a>
+            </div>
+
+            <div class="qr_code">
+                <img id="qrcode" width="400" src="Scan me!.png" />
+            </div>
+        </div>
+        <div class="tabs">
+            <button class="btn" onclick="openTab(event, 'Enterprise Xperia 2.0')">Enterprise Xperia 2.0</button>
+            <button class="btn active" onclick="openTab(event, 'Anual_fest_2023')">Anual fest 2023</button>
+            <button class="btn" onclick="openTab(event, 'Freshers')">Freshers</button>
+        </div>
+
+        <div class="tab-content" id="Anual_fest_2023">
+            <h2>Anual fest 2k23</h2>
+            <div class="grid-wrapper" id="Anual_fest_2023-grid"></div>
+        </div>
+        <div class="tab-content" id="Freshers" style="display: none;">
+            <h2>Photos from Freshers 2024</h2>
+            <div class="grid-wrapper" id="Freshers-grid"></div>
+        </div>
+        <div class="tab-content" id="Enterprise Xperia 2.0" style="display: none;">
+            <h2>Photos from Enterprise Xperia 2.0</h2>
+            <div class="grid-wrapper" id="Enterprise Xperia 2.0-grid"></div>
+        </div>
+    </div>
+
+    </div>
+    <script>
+        async function loadPhotos() {
+            try {
+                const response = await fetch("/photos");
+                if (!response.ok) throw new Error("Failed to load photos");
+
+                const photos = await response.json();
+                for (const category in photos) {
+                    photos[category].forEach((url) => displayPhoto(url, category));
+                }
+            } catch (error) {
+                console.error("Error loading photos:", error);
+            }
+        }
+
+        function displayPhoto(url, category) {
+            const grid = document.getElementById(`${category}-grid`);
+            if (!grid) {
+                console.error(`Error: Grid for category "${category}" not found.`);
+                return;
+            }
+
+            const img = document.createElement("img");
+            img.src = url;
+            img.className = "uploaded-photo";
+            grid.appendChild(img);
+        }
+
+        function openTab(evt, tabName) {
+            const tabContents = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].style.display = "none";
+            }
+
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        window.addEventListener("DOMContentLoaded", loadPhotos);
+    </script>
+    <footer>
+        <div class="fotr_div">
+            <ul class="fotr_ul">
+                <li class="fotr_li
+fotr_li"><a class="fotr_a" href="https://twitter.com/julesforrest">By Raj gajjar</a></li>
+                <li class="fotr_li
+fotr_li"><a class="fotr_a" href="https://www.instagram.com/gajjar._.raj?igsh=cmttYnBtanVlcGg3">Instagram</a></li>
+                <li class="fotr_li
+fotr_li"><a class="fotr_a" href="mailto:rajgajjar2023@gmail.com">Email</a></li>
+                <li class="fotr_li
+fotr_li"><a class="fotr_a" href="https://github.com/raj-30">Github</a></li>
+                <li class="fotr_li
+fotr_li"><a class="fotr_a" href="#headtitle">Collecting Memories, Building Stories.,Togather</a></li>
+                <li class="fotr_li
+fotr_li">
+                    <p>👋</p>
+                </li>
+            </ul>
+        </div>
+    </footer>
+</body>
+
+</html>

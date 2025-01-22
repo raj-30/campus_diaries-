@@ -1,0 +1,109 @@
+@font-face {
+  font-family: simple_day;
+  src: url(Simple_Day.otf);
+}
+
+/* Page and Font Styling */
+body {
+  font-family: "simple_day";
+  background-color: #fdf6e3;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23524f3f' fill-opacity='0.42'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3Cpath d='M6 5V0H5v5H0v1h5v94h1V6h94V5H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  color: #4a4a4a;
+  padding: 20px;
+}
+.upload-page {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 2px solid #e5dfd3;
+  background: #faf1e3;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+}
+
+/* Upload Container Styling */
+.upload-container {
+  margin: 15px auto;
+  padding: 15px;
+  border: 2px dashed #8a7356;
+  background: #fbf7f2;
+  width: 80%;
+  text-align: center;
+  cursor: pointer;
+  color: #8a7356;
+  border-top-left-radius: 255px 15px;
+  border-top-right-radius: 15px 225px;
+  border-bottom-right-radius: 225px 15px;
+  /* border-bottom-left-radius: 15px 255px; */
+  border: dashed 2px #41403e;
+}
+.upload-container:hover {
+  background: #f2e8d4;
+}
+
+/* Preview Styling */
+.preview {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+.preview img {
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
+  border: 1px solid #8a7356;
+}
+
+/* Form Elements Styling */
+input[type="text"],
+textarea,
+select,
+input[type="date"] {
+  width: 80%;
+  margin: 8px 0;
+  padding: 10px;
+  border: 1px solid #8a7356;
+  border-radius: 5px;
+  background-color: #fbf7f2;
+  color: #4a4a4a;
+}
+input[type="text"]:focus,
+textarea:focus,
+select:focus,
+input[type="date"]:focus {
+  border-color: #a6895a;
+}
+
+/* Button and Progress Bar */
+.upload-button {
+  background-color: #8a7356;
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 15px;
+}
+.upload-button:hover {
+  background-color: #a6895a;
+}
+#progress-bar-container {
+  display: none;
+  width: 80%;
+  margin: 15px auto;
+  height: 8px;
+  background-color: #e5dfd3;
+  border-radius: 5px;
+}
+#progress-bar {
+  height: 100%;
+  width: 0;
+  background-color: #8a7356;
+  border-radius: 5px;
+}
+.status-message {
+  margin-top: 10px;
+}
